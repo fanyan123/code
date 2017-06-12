@@ -209,3 +209,4 @@ alter table user add constraint FK_Reference_15 foreign key (provinceid)
 alter table user add constraint FK_Reference_16 foreign key (teacherid)
       references teacher (id) on delete restrict on update restrict;
 
+select * from picture limit 1,10
