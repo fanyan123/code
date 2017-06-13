@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.MusicDAO">
+	<!--查询所有-->
+	<select id="selectAll1"  resultType="record">
+		select id,name,userid from record limit #{start},#{rows}
+	</select>
+	<!--查询所有-->
+	<select id="selectAll"  resultType="record">
+		select id,name,userid from record
+	</select>
+	<!--查一个-->
+	<select id="selectById" parameterType="string" resultType="record">
+		select id,name,userid from record where id=#{id}
+	</select>
+	<!--添加-->
+	<insert id="insert" parameterType="record">
+		insert into record values(#{id},#{name},#{user.id})
+	</insert>
+	<!--删除-->
+	<delete id="delete" parameterType="string">
+		delete from record where id=#{id}
+	</delete>
+	<!--修改-->
+	<update id="update" parameterType="record">
+		update record set name=#{name},userid=#{user.id} where id=#{id}
+	</update>
+	<!--数据总数-->
+	<select id="selectCount" resultType="integer">
+		select count(id) from record
+	</select>
+</mapper>

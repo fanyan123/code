@@ -10,7 +10,7 @@
 		select id,name from province
 	</select>
 	<!--查一个-->
-	<select id="selectById" parameterType="string">
+	<select id="selectById" parameterType="string" resultType="province">
 		select id,name from province where id=#{id}
 	</select>
 	<!--添加-->

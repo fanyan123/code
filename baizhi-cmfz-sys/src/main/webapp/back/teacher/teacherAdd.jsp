@@ -4,6 +4,6 @@
     <form method="post" class="easyui-form" id="ff">
 
         <div style="margin-top: 30px"><input type="hidden" data-options="required:true" id="id" name="id" ></div>
-        <div style="margin-top: 30px">省名：<input class="easyui-textbox" data-options="required:true" name="name"></div>
+        <div style="margin-top: 30px">上师名：<input class="easyui-textbox" data-options="required:true" name="name"></div>
     </form>
 </div>

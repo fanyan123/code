@@ -49,7 +49,7 @@
 
                     $.messager.show({
                         title:'我的消息',
-                        msg:'删除成功。',
+                        msg:result,
                         timeout:300,
                         showType:'slide'
                     });
@@ -70,7 +70,7 @@
                 handler:sbmit,
             },{
                 text:'取消',
-                iconCls:'icon-cancle',
+                iconCls:'icon-cancel',
                 handler:cle,
             }]
         });

@@ -6,8 +6,8 @@
 		select id,name,picpath from teacher limit #{start},#{rows}
 	</select>
 	<!--查一个-->
-	<select id="selectById" parameterType="string">
-		select id,name,picpath from teahcer where id=#{id}
+	<select id="selectById" parameterType="string" resultType="teacher">
+		select id,name,picpath from teacher where id=#{id}
 	</select>
 	<!--添加-->
 	<insert id="insert" parameterType="teacher">

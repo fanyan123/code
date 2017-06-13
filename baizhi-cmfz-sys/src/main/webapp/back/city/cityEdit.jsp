@@ -2,17 +2,16 @@
 <%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" language="java" %>
 <script>
     $(function(){
-        $.post('${pageContext.request.contextPath}/city/queryById',{"id":"${param.id}"},function (result) {
-            $('#id').val(result.id);
+        $.post('${pageContext.request.contextPath}/city/queryById',{"id":"${param.id}"},function (city) {
+            $('#id').val(city.id);
             $('#name').textbox({
-                value:result.name,
+                value:city.name,
             });
             $.post("${pageContext.request.contextPath}/province/queryAll1",function(result){
                 $.each(result,function (i,province) {
                     var $option = $('<option></option>');
                     $option.prop("value",province.id).prop("text",province.name);
-                    if(result.provinceid==province.id){
-
+                    if(city.province.id==province.id){
                         $option.prop("selected",true) ;
                     }
                     $('#province').append($option);

@@ -1,11 +1,11 @@
 
 <%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" language="java" %>
 <script>
-    var $teacherDa;
+    var $musicDa;
     $(function(){
-        $teacherDa = $('#teacherDa');
-        $teacherDa.datagrid({
-            url:'${pageContext.request.contextPath}/teacher/queryAll',
+        $musicDa = $('#musicDa');
+        $musicDa.datagrid({
+            url:'${pageContext.request.contextPath}/music/queryAll',
             fit:true,
             fitColumns:true,
             toolbar: [{
@@ -16,8 +16,10 @@
             }],
             columns:[[
                 {field:'id',title:'编号', width:100},
-                {field:'name',title:'名字',width:100},
-                {field:'picpath',title:'图片名',width:100},
+                {field:'title',title:'标题',width:100},
+                {field:'author',title:'作者',width:100},
+                {field:'count',title:'集数',width:100},
+                {field:'broadcast',title:'播音',width:100},
                 {field:'options',title:'操作',width:100,
                     formatter:function (value,row,index) {
                         return  "<a class='del' onClick=\"del('"+ row.id +"')\" href='javascript:;'>删除</a>&nbsp;" +
@@ -45,14 +47,16 @@
     function del(id) {
         $.messager.confirm("删除提示","您确认删除吗?",function (r) {
             if(r){
-                $.post('${pageContext.request.contextPath}/teacher/delete',{"id":id},function (result) {
+
+                $.post('${pageContext.request.contextPath}/music/delete',{"id":id},function (result) {
+
                     $.messager.show({
                         title:'我的消息',
                         msg:result,
                         timeout:300,
                         showType:'slide'
                     });
-                    $teacherDa.datagrid('reload');
+                    $musicDa.datagrid('reload');
                 },'JSON')
             }
         });
@@ -61,8 +65,8 @@
         $('#dgEdit').dialog({
             width:300,
             height:300,
-            title:'上师信息展示',
-            href:'${pageContext.request.contextPath}/back/teacher/teacherEdit.jsp?id='+id,
+            title:'专辑信息展示',
+            href:'${pageContext.request.contextPath}/back/music/musicEdit.jsp?id='+id,
             buttons:[{
                 text:'提交',
                 iconCls:'icon-save',
@@ -76,19 +80,19 @@
     }
     function sbmit() {
         $('#ff').form('submit',{
-            url:'${pageContext.request.contextPath}/teacher/update' ,
+            url:'${pageContext.request.contextPath}/music/update' ,
             success:function () {
                 $('#dgEdit').dialog('close',true);
-                $teacherDa.datagrid('reload');
+                $musicDa.datagrid('reload');
             }
         });
     }
     function sbmit1() {
         $('#ff').form('submit',{
-            url:'${pageContext.request.contextPath}/teacher/save' ,
+            url:'${pageContext.request.contextPath}/music/save' ,
             success:function () {
                 $('#add').dialog('close',true);
-                $teacherDa.datagrid('reload');
+                $musicDa.datagrid('reload');
             }
         });
     }
@@ -102,8 +106,8 @@
         $('#add').dialog({
             width:300,
             height:300,
-            title:'添加上师',
-            href:'${pageContext.request.contextPath}/back/teacher/teacherAdd.jsp',
+            title:'添加省',
+            href:'${pageContext.request.contextPath}/back/music/musicAdd.jsp',
             buttons:[{
                 text:'提交',
                 iconCls:'icon-save',
@@ -119,7 +123,7 @@
 </script>
 
 
-<div  id="teacherDa" >
+<div  id="musicDa" >
         </div>
 
     <div id="dgEdit"></div><div id="add"></div>

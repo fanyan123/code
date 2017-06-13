@@ -5,9 +5,14 @@
 	<select id="selectAll"  resultType="city">
 		select id,name from city limit #{start},#{rows}
 	</select>
+	<resultMap id="city" type="city">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<association property="province" javaType="province" select="com.baizhi.dao.ProvinceDAO.selectById" column="provinceid"/>
+	</resultMap>
 	<!--查一个-->
-	<select id="selectById" parameterType="string" resultType="city">
-		select id,name from city where id=#{id}
+	<select id="selectById" parameterType="string" resultMap="city">
+		select id,name,provinceid from city where id=#{id}
 	</select>
 	<!--添加-->
 	<insert id="insert" parameterType="city">
@@ -19,7 +24,7 @@
 	</delete>
 	<!--修改-->
 	<update id="update" parameterType="city">
-		update city set name=#{name} where id=#{id}
+		update city set name=#{name},provinceid=#{province.id} where id=#{id}
 	</update>
 	<!--数据总数-->
 	<select id="selectCount" resultType="integer">
