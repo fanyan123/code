@@ -3,11 +3,11 @@
 <mapper namespace="com.baizhi.dao.PictureDAO">
 	<!--查询所有-->
 	<select id="selectAll"  resultType="picture">
-		select id,title,name,salt from picture
+		select id,title,name,type from picture limit #{start},#{rows}
 	</select>
 	<!--查询一个-->
 	<select id="selectById" parameterType="string" resultType="picture">
-		select id,title,name,salt from picture where id=#{id}
+		select id,title,name,type from picture where id=#{id}
 	</select>
 	<!--添加-->
 	<insert id="insert" parameterType="picture">
@@ -21,4 +21,8 @@
 	<update id="update" parameterType="picture">
 		update picture set title=#{title},name=#{name},type=#{type} where id=#{id}
 	</update>
+	<!--数据总数-->
+	<select id="selectCount" resultType="integer">
+		select count(id) from picture
+	</select>
 </mapper>

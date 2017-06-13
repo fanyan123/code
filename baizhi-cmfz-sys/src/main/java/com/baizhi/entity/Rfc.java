@@ -1,12 +1,14 @@
 package com.baizhi.entity;
 
+import java.util.Date;
+
 /**
  * Created by ASUS-PC on 2017-06-12.
  */
 public class Rfc {
     private String id;
     private String content;
-    private String pushdate;
+    private Date pushdate;
     private User user;
 
     @Override
@@ -34,11 +36,11 @@ public class Rfc {
         this.content = content;
     }
 
-    public String getPushdate() {
+    public Date getPushdate() {
         return pushdate;
     }
 
-    public void setPushdate(String pushdate) {
+    public void setPushdate(Date pushdate) {
         this.pushdate = pushdate;
     }
 

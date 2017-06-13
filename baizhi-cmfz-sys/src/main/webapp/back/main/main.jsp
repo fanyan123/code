@@ -23,7 +23,7 @@
                 $.each(menus,function(i,menu){
                     var content = "<div style='text-align: center;'>";
                     $.each(menu.children,function(j,child){
-                        content +="<div onclick=\"addTabs('"+child.name+"','"+child.iconCls+"','"+child.href+"')\" class='easyui-linkbutton' data-options=\"plain:true,iconCls:'"+child.iconCls+"'\" style='border:1px solid green; width:90%;margin: 5 0  ;'>"+child.name+"</div>";
+                        content +="<div  onclick=\"addTabs('"+child.name+"','"+child.iconCls+"','"+child.href+"')\" class='easyui-linkbutton' data-options=\"plain:true,iconCls:'"+child.iconCls+"'\" style='border:1px solid green; width:90%;margin: 5 0  ;'>"+child.name+"</div>";
                     })
                     content +="</div>";
                     $aa.accordion('add',{

@@ -43,8 +43,13 @@ public class PictureServiceImpl implements PictureService{
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
-    public List<Picture> queryAll() {
-        List<Picture> pictures =  pictureDAO.selectAll();
+    public List<Picture> queryAll(Integer page,Integer rows) {
+        List<Picture> pictures =  pictureDAO.selectAll((page-1)*rows,rows);
         return pictures;
+    }
+
+    @Override
+    public Integer queryCount() {
+        return pictureDAO.selectCount();
     }
 }

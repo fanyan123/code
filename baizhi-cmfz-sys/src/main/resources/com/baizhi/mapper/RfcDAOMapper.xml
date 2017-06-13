@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.RfcDAO">
+	<!--查询所有-->
+	<select id="selectAll"  resultType="rfc">
+		select id,count,pushdate,userid from rfc limit #{start},#{rows}
+	</select>
+	<!--数据总数-->
+	<select id="selectCount" resultType="integer">
+		select count(id) from rfc
+	</select>
+	<!--删除-->
+	<delete id="delete" parameterType="string">
+		delete from rfc where id=#{id}
+	</delete>
+	<!--添加-->
+	<insert id="insert" parameterType="rfc">
+		insert into rfc values(#{id},#{userid},#{count},#{pushdate})
+	</insert>
+</mapper>

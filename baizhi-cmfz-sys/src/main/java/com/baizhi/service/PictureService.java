@@ -13,5 +13,6 @@ public interface PictureService {
     public void delete(String id);
     public void update(Picture picture);
     public Picture queryById(String id);
-    public List<Picture> queryAll();
+    public List<Picture> queryAll(Integer page,Integer rows);
+    public Integer queryCount();
 }
