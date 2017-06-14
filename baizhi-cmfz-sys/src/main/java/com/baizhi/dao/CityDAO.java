@@ -10,6 +10,6 @@ import java.util.List;
  * Created by ASUS-PC on 2017-06-13.
  */
 public interface CityDAO extends BaseDAO<City>{
-    public List<City> selectAll(@Param("start") Integer start, @Param("rows") Integer rows);
+    public List<City> selectAll1(@Param("start") Integer start, @Param("rows") Integer rows);
     public Integer selectCount();
 }

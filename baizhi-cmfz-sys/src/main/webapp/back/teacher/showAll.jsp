@@ -12,7 +12,7 @@
                 text:'添加',
                 plan: true,
                 iconCls: 'icon-add',
-                handler: addUser
+                handler: addTeacher
             }],
             columns:[[
                 {field:'id',title:'编号', width:100},
@@ -20,8 +20,8 @@
                 {field:'picpath',title:'图片名',width:100},
                 {field:'options',title:'操作',width:100,
                     formatter:function (value,row,index) {
-                        return  "<a class='del' onClick=\"del('"+ row.id +"')\" href='javascript:;'>删除</a>&nbsp;" +
-                                "<a class='edt' onClick=\"editRow('"+ row.id +"')\"  href='javascript:;'>修改</a>";
+                        return  "<a class='del' onClick=\"delTeacher('"+ row.id +"')\" href='javascript:;'>删除</a>&nbsp;" +
+                                "<a class='edt' onClick=\"editRowTeacher('"+ row.id +"')\"  href='javascript:;'>修改</a>";
                     }
                 }
             ]],
@@ -42,7 +42,7 @@
         });
 
     });
-    function del(id) {
+    function delTeacher(id) {
         $.messager.confirm("删除提示","您确认删除吗?",function (r) {
             if(r){
                 $.post('${pageContext.request.contextPath}/teacher/delete',{"id":id},function (result) {
@@ -57,8 +57,8 @@
             }
         });
     }
-    function editRow(id) {
-        $('#dgEdit').dialog({
+    function editRowTeacher(id) {
+        $('#dgEditTeacher').dialog({
             width:300,
             height:300,
             title:'上师信息展示',
@@ -66,40 +66,40 @@
             buttons:[{
                 text:'提交',
                 iconCls:'icon-save',
-                handler:sbmit,
+                handler:sbmitTeacher,
             },{
                 text:'取消',
                 iconCls:'icon-cancle',
-                handler:cle,
+                handler:cleTeacher,
             }]
         });
     }
-    function sbmit() {
-        $('#ff').form('submit',{
+    function sbmitTeacher() {
+        $('#ffTeacher').form('submit',{
             url:'${pageContext.request.contextPath}/teacher/update' ,
             success:function () {
-                $('#dgEdit').dialog('close',true);
+                $('#dgEditTeacher').dialog('close',true);
                 $teacherDa.datagrid('reload');
             }
         });
     }
-    function sbmit1() {
-        $('#ff').form('submit',{
+    function sbmit1Teacher() {
+        $('#fTeacher').form('submit',{
             url:'${pageContext.request.contextPath}/teacher/save' ,
             success:function () {
-                $('#add').dialog('close',true);
+                $('#addTeacher').dialog('close',true);
                 $teacherDa.datagrid('reload');
             }
         });
     }
-    function cle() {
-        $('#dgEdit').dialog('close',true);
+    function cleTeacher() {
+        $('#dgEditTeacher').dialog('close',true);
     }
-    function cle1() {
-        $('#add').dialog('close',true);
+    function cle1Teacher() {
+        $('#addTeacher').dialog('close',true);
     }
-    function addUser() {
-        $('#add').dialog({
+    function addTeacher() {
+        $('#addTeacher').dialog({
             width:300,
             height:300,
             title:'添加上师',
@@ -122,6 +122,6 @@
 <div  id="teacherDa" >
         </div>
 
-    <div id="dgEdit"></div><div id="add"></div>
+    <div id="dgEditTeacher"></div><div id="addTeacher"></div>
 
 

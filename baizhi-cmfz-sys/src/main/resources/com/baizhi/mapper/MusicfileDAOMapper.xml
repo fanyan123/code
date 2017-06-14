@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.MusicfileDAO">
+	<resultMap id="musicfile" type="musicfile">
+		<id column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="name" property="name"/>
+		<result column="size" property="size"/>
+		<association property="music" javaType="music" select="com.baizhi.dao.MusicDAO.selectById" column="musicid"/>
+	</resultMap>
+	<!--查询所有-->
+	<select id="selectAll"  resultMap="musicfile">
+		select id,title,name,size,musicid from musicfile limit #{start},#{rows}
+	</select>
+	<!--查一个-->
+	<select id="selectById" parameterType="string" resultMap="musicfile">
+		select id,title,name,size,musicid from musicfile where id=#{id}
+	</select>
+	<!--添加-->
+	<insert id="insert" parameterType="musicfile">
+		insert into musicfile values(#{id},#{title},#{name},#{size},#{music.id})
+	</insert>
+	<!--删除-->
+	<delete id="delete" parameterType="string">
+		delete from musicfile where id=#{id}
+	</delete>
+	<!--修改-->
+	<update id="update" parameterType="musicfile">
+		update musicfile set title=#{title},name=#{name},size=#{size},musicid=#{music.id} where id=#{id}
+	</update>
+	<!--数据总数-->
+	<select id="selectCount" resultType="integer">
+		select count(id) from musicfile
+	</select>
+</mapper>

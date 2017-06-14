@@ -12,7 +12,7 @@
                 text:'添加',
                 plan: true,
                 iconCls: 'icon-add',
-                handler: addUser
+                handler: addMusic
             }],
             columns:[[
                 {field:'id',title:'编号', width:100},
@@ -22,8 +22,8 @@
                 {field:'broadcast',title:'播音',width:100},
                 {field:'options',title:'操作',width:100,
                     formatter:function (value,row,index) {
-                        return  "<a class='del' onClick=\"del('"+ row.id +"')\" href='javascript:;'>删除</a>&nbsp;" +
-                                "<a class='edt' onClick=\"editRow('"+ row.id +"')\"  href='javascript:;'>修改</a>";
+                        return  "<a class='del' onClick=\"delMusic('"+ row.id +"')\" href='javascript:;'>删除</a>&nbsp;" +
+                                "<a class='edt' onClick=\"MusicdgEdit('"+ row.id +"')\"  href='javascript:;'>修改</a>";
                     }
                 }
             ]],
@@ -44,7 +44,7 @@
         });
 
     });
-    function del(id) {
+    function delMusic(id) {
         $.messager.confirm("删除提示","您确认删除吗?",function (r) {
             if(r){
 
@@ -61,8 +61,8 @@
             }
         });
     }
-    function editRow(id) {
-        $('#dgEdit').dialog({
+    function MusicdgEdit(id) {
+        $('#MusicdgEdit').dialog({
             width:300,
             height:300,
             title:'专辑信息展示',
@@ -70,52 +70,52 @@
             buttons:[{
                 text:'提交',
                 iconCls:'icon-save',
-                handler:sbmit,
+                handler:sbmitMusic,
             },{
                 text:'取消',
                 iconCls:'icon-cancle',
-                handler:cle,
+                handler:cleMusic,
             }]
         });
     }
-    function sbmit() {
-        $('#ff').form('submit',{
+    function sbmitMusic() {
+        $('#ffMusic').form('submit',{
             url:'${pageContext.request.contextPath}/music/update' ,
             success:function () {
-                $('#dgEdit').dialog('close',true);
+                $('#MusicdgEdit').dialog('close',true);
                 $musicDa.datagrid('reload');
             }
         });
     }
-    function sbmit1() {
-        $('#ff').form('submit',{
+    function sbmit1Music() {
+        $('#fMusic').form('submit',{
             url:'${pageContext.request.contextPath}/music/save' ,
             success:function () {
-                $('#add').dialog('close',true);
+                $('#addMusic').dialog('close',true);
                 $musicDa.datagrid('reload');
             }
         });
     }
-    function cle() {
-        $('#dgEdit').dialog('close',true);
+    function cleMusic() {
+        $('#MusicdgEdit').dialog('close',true);
     }
-    function cle1() {
-        $('#add').dialog('close',true);
+    function cle1Music() {
+        $('#addMusic').dialog('close',true);
     }
-    function addUser() {
-        $('#add').dialog({
+    function addMusic() {
+        $('#addMusic').dialog({
             width:300,
             height:300,
-            title:'添加省',
+            title:'添加专辑',
             href:'${pageContext.request.contextPath}/back/music/musicAdd.jsp',
             buttons:[{
                 text:'提交',
                 iconCls:'icon-save',
-                handler:sbmit1,
+                handler:sbmit1Music,
             },{
                 text:'取消',
                 iconCls:'icon-cancle',
-                handler:cle1,
+                handler:cle1Music,
             }]
         });
     }
@@ -126,6 +126,6 @@
 <div  id="musicDa" >
         </div>
 
-    <div id="dgEdit"></div><div id="add"></div>
+    <div id="MusicdgEdit"></div><div id="addMusic"></div>
 
 

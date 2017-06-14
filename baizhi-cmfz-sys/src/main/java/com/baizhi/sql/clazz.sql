@@ -81,7 +81,6 @@ create table music
    picpath              varchar(100),
    primary key (id)
 );
-
 /*==============================================================*/
 /* Table: musicfile                                             */
 /*==============================================================*/
@@ -90,7 +89,7 @@ create table musicfile
    id                   varchar(36) not null,
    title                varchar(50),
    name                 varchar(100),
-   size                 integer,
+   size                 VARCHAR(10),
    musicid              varchar(36),
    primary key (id)
 );
@@ -210,3 +209,6 @@ alter table user add constraint FK_Reference_16 foreign key (teacherid)
       references teacher (id) on delete restrict on update restrict;
 
 select * from picture limit 1,10
+INSERT INTO `test`.`musicfile` (`id`, `title`, `name`, `size`, `musicid`) VALUES ('1', 'music1', '111.mp3', '3M', '1');
+INSERT INTO `test`.`musicfile` (`id`, `title`, `name`, `size`, `musicid`) VALUES ('2', 'music2', '222.mp3', '4M', '1');
+INSERT INTO `test`.`musicfile` (`id`, `title`, `name`, `size`, `musicid`) VALUES ('3', 'music3', '333.mp3', '4.5M', '2');

@@ -50,9 +50,11 @@ public class ProvinceServiceImpl implements ProvinceService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Integer queryCount() {
         return provinceDAO.selectCount();
     }
+    @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public List<Province> queryAll(){
         return provinceDAO.selectAll();
     }

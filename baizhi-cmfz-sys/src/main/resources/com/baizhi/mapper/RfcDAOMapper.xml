@@ -3,7 +3,7 @@
 <mapper namespace="com.baizhi.dao.RfcDAO">
 	<!--查询所有-->
 	<select id="selectAll"  resultType="rfc">
-		select id,count,pushdate,userid from rfc limit #{start},#{rows}
+		select id,content,pushdate,userid from rfc limit #{start},#{rows}
 	</select>
 	<!--数据总数-->
 	<select id="selectCount" resultType="integer">
@@ -15,6 +15,6 @@
 	</delete>
 	<!--添加-->
 	<insert id="insert" parameterType="rfc">
-		insert into rfc values(#{id},#{userid},#{count},#{pushdate})
+		insert into rfc values(#{id},#{user.id},#{content},#{pushdate})
 	</insert>
 </mapper>

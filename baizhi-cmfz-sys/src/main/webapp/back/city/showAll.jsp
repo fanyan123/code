@@ -12,15 +12,15 @@
                 text:'添加',
                 plan: true,
                 iconCls: 'icon-add',
-                handler: addUser
+                handler: addCity
             }],
             columns:[[
                 {field:'id',title:'编号', width:100},
                 {field:'name',title:'市名字',width:100},
                 {field:'options',title:'操作',width:100,
                     formatter:function (value,row,index) {
-                        return  "<a class='del' onClick=\"del('"+ row.id +"')\" href='javascript:;'>删除</a>&nbsp;" +
-                                "<a class='edt' onClick=\"editRow('"+ row.id +"')\"  href='javascript:;'>修改</a>";
+                        return  "<a class='del' onClick=\"delCity('"+ row.id +"')\" href='javascript:;'>删除</a>&nbsp;" +
+                                "<a class='edt' onClick=\"editRowCity('"+ row.id +"')\"  href='javascript:;'>修改</a>";
                     }
                 }
             ]],
@@ -41,7 +41,7 @@
         });
 
     });
-    function del(id) {
+    function delCity(id) {
         $.messager.confirm("删除提示","您确认删除吗?",function (r) {
             if(r){
 
@@ -58,8 +58,8 @@
             }
         });
     }
-    function editRow(id) {
-        $('#dgEdit').dialog({
+    function editRowCity(id) {
+        $('#dgEditCity').dialog({
             width:300,
             height:300,
             title:'市信息展示',
@@ -67,52 +67,52 @@
             buttons:[{
                 text:'提交',
                 iconCls:'icon-save',
-                handler:sbmit,
+                handler:sbmitCityUpdate,
             },{
                 text:'取消',
                 iconCls:'icon-cancel',
-                handler:cle,
+                handler:cleEditCity,
             }]
         });
     }
-    function sbmit() {
-        $('#ff').form('submit',{
+    function sbmitCityUpdate() {
+        $('#CityFf').form('submit',{
             url:'${pageContext.request.contextPath}/city/update' ,
             success:function () {
-                $('#dgEdit').dialog('close',true);
+                $('#dgEditCity').dialog('close',true);
                 $cityDa.datagrid('reload');
             }
         });
     }
-    function sbmit1() {
-        $('#ff').form('submit',{
+    function sbmitAddCity() {
+        $('#CityF').form('submit',{
             url:'${pageContext.request.contextPath}/city/save' ,
             success:function () {
-                $('#add').dialog('close',true);
+                $('#addCity').dialog('close',true);
                 $cityDa.datagrid('reload');
             }
         });
     }
-    function cle() {
-        $('#dgEdit').dialog('close',true);
+    function cleEditCity() {
+        $('#dgEditCity').dialog('close',true);
     }
-    function cle1() {
-        $('#add').dialog('close',true);
+    function cleAddCity() {
+        $('#addCity').dialog('close',true);
     }
-    function addUser() {
-        $('#add').dialog({
+    function addCity() {
+        $('#addCity').dialog({
             width:300,
             height:300,
-            title:'添加省',
+            title:'添加市',
             href:'${pageContext.request.contextPath}/back/city/cityAdd.jsp',
             buttons:[{
                 text:'提交',
                 iconCls:'icon-save',
-                handler:sbmit1,
+                handler:sbmitAddCity,
             },{
                 text:'取消',
                 iconCls:'icon-cancle',
-                handler:cle1,
+                handler:cleAddCity,
             }]
         });
     }
@@ -123,6 +123,6 @@
 <div  id="cityDa" >
         </div>
 
-    <div id="dgEdit"></div><div id="add"></div>
+    <div id="dgEditCity"></div><div id="addCity"></div>
 
 

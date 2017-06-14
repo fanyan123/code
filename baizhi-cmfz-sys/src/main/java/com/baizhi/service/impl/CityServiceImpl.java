@@ -46,9 +46,15 @@ public class CityServiceImpl implements CityService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public List<City> queryAll(Integer page,Integer rows) {
-        List<City> cities = cityDAO.selectAll((page - 1) * rows, rows);
+        List<City> cities = cityDAO.selectAll1((page - 1) * rows, rows);
         return cities;
     }
+
+    @Override
+    public List<City> queryAll() {
+        return cityDAO.selectAll();
+    }
+
     @Override
     public Integer queryCount() {
         return cityDAO.selectCount();

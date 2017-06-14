@@ -7,7 +7,7 @@ public class Musicfile {
     private String id;
     private String title;
     private String name;
-    private Integer size;
+    private String size;
     private Music music;
 
     @Override
@@ -19,7 +19,6 @@ public class Musicfile {
                 ", size='" + size + '\'' +
                 '}';
     }
-
     public String getId() {
         return id;
     }
@@ -45,11 +44,11 @@ public class Musicfile {
     }
 
 
-    public Integer getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(Integer size) {
+    public void setSize(String size) {
         this.size = size;
     }
 

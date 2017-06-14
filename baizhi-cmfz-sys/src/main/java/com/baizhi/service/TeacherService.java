@@ -15,5 +15,6 @@ public interface TeacherService {
     public void update(Teacher teacher);
     public Teacher queryById(String id);
     public List<Teacher> queryAll(Integer page, Integer rows);
+    public List<Teacher> queryAll();
     public Integer queryCount();
 }

@@ -75,5 +75,15 @@ public class CityController {
             e.printStackTrace();
         }
     }
-
+    @RequestMapping("queryAll1")
+    @ResponseBody
+    public List<City> queryAll(){
+        try {
+            List<City> cities = cityService.queryAll();
+            return cities;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

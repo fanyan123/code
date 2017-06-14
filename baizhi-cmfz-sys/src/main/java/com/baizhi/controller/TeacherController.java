@@ -38,6 +38,17 @@ public class TeacherController {
         }
         return null;
     }
+    @RequestMapping("queryAll1")
+    @ResponseBody
+    public List<Teacher> queryAll(){
+        try {
+            List<Teacher> teachers = teacherService.queryAll();
+            return teachers;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     @RequestMapping("queryById")
     @ResponseBody
     public Teacher queryById(String id){
@@ -72,8 +83,6 @@ public class TeacherController {
     @RequestMapping("save")
     @ResponseBody
     public String save(Teacher teacher, MultipartFile aaa, HttpServletRequest request){
-
-
         String realPath = request.getSession().getServletContext().getRealPath("/back/static/images");
         File file = new File(realPath);
         String newFileName = UUID.randomUUID().toString()+"."+ FilenameUtils.getExtension(aaa.getOriginalFilename());

@@ -43,8 +43,8 @@ public class RfcController {
             return "success";
         } catch (Exception e) {
             e.printStackTrace();
-            return "fail";
         }
+        return "fail";
     }
     @ResponseBody
     @RequestMapping("save")

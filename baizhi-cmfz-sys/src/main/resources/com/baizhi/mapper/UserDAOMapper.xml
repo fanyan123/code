@@ -1,12 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.baizhi.dao.UserDao">
+<mapper namespace="com.baizhi.dao.UserDAO">
+	<sql id="userQuery">
+		id,name,legalname,tel,sex,signature,picpath,provinceid,cityid,teacherid
+	</sql>
 	<!-- 添加用户 -->
 	<insert id="insert" parameterType="user">
-		insert into t_user values(#{id},#{name},#{realName},#{password},#{sex},#{salt})
+		insert into user values(#{id},#{name},#{legalname},#{tel},#{sex},#{signature},#{picpath},#{province.id},#{city.id},#{password},#{salt},#{teacher.id})
 	</insert>
+	<!--修改用户-->
+	<update id="update" parameterType="user" >
+		update user set name=#{name},legalname=#{legalname},tel=#{tel},sex=#{sex},signature=#{signature},picpath=#{picpath},provinceid=#{province.id},cityid=#{city.id},password=#{possword},salt=#{salt},teacherid=#{teacher.id} where id=#{id}
+	</update>
+	<resultMap id="user" type="user">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="legalname" property="legalname"/>
+		<result column="tel" property="tel"/>
+		<result column="sex" property="sex"/>
+		<result column="signature" property="signature"/>
+		<result column="picpath" property="picpath"/>
+		<association property="province" javaType="province" select="com.baizhi.dao.ProvinceDAO.selectById" column="provinceid"/>
+		<association property="city" javaType="city" select="com.baizhi.dao.CityDAO.selectById" column="cityid"/>
+		<association property="teacher" javaType="teacher" select="com.baizhi.dao.TeacherDAO.selectById" column="teacherid"/>
+
+	</resultMap>
+	<!--分页查询所有-->
+	<select id="selectAll1" resultMap="user">
+		select <include refid="userQuery"/> from user limit #{start},#{rows}
+	</select>
+	<!--查询所有-->
+	<select id="selectAll" resultMap="user">
+		select <include refid="userQuery"/> from user
+	</select>
+	<!--查一个-->
+	<select id="selectById" resultMap="user" parameterType="string">
+		select <include refid="userQuery"/> from user where id=#{id}
+	</select>
+
 	<!-- 根据用户名查询用户 -->
 	<select id="selectByName" parameterType="string" resultType="user">
-		select id,username name,realName,password,sex,salt from t_user where username=#{name}
+		select <include refid="userQuery"/> from user where name=#{name}
+	</select>
+	<!--删除用户-->
+	<delete id="delete" parameterType="string">
+		delete from user where id=#{id}
+ 	</delete>
+	<!--统计数量-->
+	<select id="selectCount" resultType="integer">
+		select count(id) from user
 	</select>
 </mapper>

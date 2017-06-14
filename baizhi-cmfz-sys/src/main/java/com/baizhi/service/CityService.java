@@ -15,5 +15,6 @@ public interface CityService {
     public void update(City city);
     public City queryById(String id);
     public List<City> queryAll(Integer page, Integer rows);
+    public List<City> queryAll();
     public Integer queryCount();
 }

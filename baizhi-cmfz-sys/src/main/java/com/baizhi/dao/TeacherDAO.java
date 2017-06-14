@@ -10,7 +10,7 @@ import java.util.List;
  * Created by ASUS-PC on 2017-06-13.
  */
 public interface TeacherDAO extends BaseDAO<Teacher>{
-    public List<Teacher> selectAll(@Param("start") Integer start, @Param("rows") Integer rows);
+    public List<Teacher> selectAll1(@Param("start") Integer start, @Param("rows") Integer rows);
     public Integer selectCount();
 
 }

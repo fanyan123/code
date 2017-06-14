@@ -46,29 +46,7 @@ public class PictureController {
         }
         return null;
     }
-    @RequestMapping("upload")
-    @ResponseBody
-    public  String  upload(MultipartFile aaa, HttpServletRequest request,String title) throws IOException {
-        String realPath = request.getSession().getServletContext().getRealPath("/back/static/images");
-        File file = new File(realPath);
-        String newFileName = UUID.randomUUID().toString()+"."+ FilenameUtils.getExtension(aaa.getOriginalFilename());
-        //上传文件
-        Picture picture = new Picture();
-        picture.setName(newFileName);
-        picture.setTitle(title);
-        picture.setType("0");
-        String s = UUID.randomUUID().toString();
-        picture.setId(s);
-        try {
-            pictureService.save(picture);
-            aaa.transferTo(new File(file,newFileName));
-            return "success";
-        } catch (Exception e) {
-            pictureService.delete(s);
-            e.printStackTrace();
-        }
-        return "fail";
-    }
+
     @RequestMapping("delete")
     @ResponseBody
     public String delete(String id){

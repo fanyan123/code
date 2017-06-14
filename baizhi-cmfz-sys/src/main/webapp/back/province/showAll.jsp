@@ -12,7 +12,7 @@
                 text:'添加',
                 plan: true,
                 iconCls: 'icon-add',
-                handler: addUser
+                handler: addProvince
             }],
             columns:[[
                 {field:'id',title:'编号', width:100},
@@ -20,8 +20,8 @@
 
                 {field:'options',title:'操作',width:100,
                     formatter:function (value,row,index) {
-                        return  "<a class='del' onClick=\"del('"+ row.id +"')\" href='javascript:;'>删除</a>&nbsp;" +
-                                "<a class='edt' onClick=\"editRow('"+ row.id +"')\"  href='javascript:;'>修改</a>";
+                        return  "<a class='del' onClick=\"delProvince('"+ row.id +"')\" href='javascript:;'>删除</a>&nbsp;" +
+                                "<a class='edt' onClick=\"editRowProvince('"+ row.id +"')\"  href='javascript:;'>修改</a>";
                     }
                 }
             ]],
@@ -42,7 +42,7 @@
         });
 
     });
-    function del(id) {
+    function delProvince(id) {
         $.messager.confirm("删除提示","您确认删除吗?",function (r) {
             if(r){
 
@@ -59,8 +59,8 @@
             }
         });
     }
-    function editRow(id) {
-        $('#dgEdit').dialog({
+    function editRowProvince(id) {
+        $('#dgEditProvince').dialog({
             width:300,
             height:300,
             title:'省信息展示',
@@ -68,40 +68,40 @@
             buttons:[{
                 text:'提交',
                 iconCls:'icon-save',
-                handler:sbmit,
+                handler:sbmitProvince,
             },{
                 text:'取消',
                 iconCls:'icon-cancle',
-                handler:cle,
+                handler:cleProvince,
             }]
         });
     }
-    function sbmit() {
-        $('#ff').form('submit',{
+    function sbmitProvince() {
+        $('#ffProvince').form('submit',{
             url:'${pageContext.request.contextPath}/province/update' ,
             success:function () {
-                $('#dgEdit').dialog('close',true);
+                $('#dgEditProvince').dialog('close',true);
                 $provinceDa.datagrid('reload');
             }
         });
     }
-    function sbmit1() {
-        $('#ff').form('submit',{
+    function sbmit1Province() {
+        $('#fProvince').form('submit',{
             url:'${pageContext.request.contextPath}/province/save' ,
             success:function () {
-                $('#add').dialog('close',true);
+                $('#addProvince').dialog('close',true);
                 $provinceDa.datagrid('reload');
             }
         });
     }
-    function cle() {
-        $('#dgEdit').dialog('close',true);
+    function cleProvince() {
+        $('#dgEditProvince').dialog('close',true);
     }
-    function cle1() {
-        $('#add').dialog('close',true);
+    function cle1Province() {
+        $('#addProvince').dialog('close',true);
     }
-    function addUser() {
-        $('#add').dialog({
+    function addProvince() {
+        $('#addProvince').dialog({
             width:300,
             height:300,
             title:'添加省',
@@ -109,11 +109,11 @@
             buttons:[{
                 text:'提交',
                 iconCls:'icon-save',
-                handler:sbmit1,
+                handler:sbmit1Province,
             },{
                 text:'取消',
                 iconCls:'icon-cancle',
-                handler:cle1,
+                handler:cle1Province,
             }]
         });
     }
@@ -124,6 +124,6 @@
 <div  id="provinceDa" >
         </div>
 
-    <div id="dgEdit"></div><div id="add"></div>
+    <div id="dgEditProvince"></div><div id="addProvince"></div>
 
 

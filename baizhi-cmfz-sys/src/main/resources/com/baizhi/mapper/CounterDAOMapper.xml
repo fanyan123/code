@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.CounterDAO">
+	<resultMap id="counter" type="counter">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="creatdate" property="createdate"/>
+		<result column="count" property="count"/>
+		<association property="record" javaType="record" select="com.baizhi.dao.RecordDAO.selectById" column="recordid"/>
+	</resultMap>
+	<!--分页查询所有-->
+	<select id="selectAll1"  resultMap="counter">
+		select id,name,creatdate,count,recordid from counter limit #{start},#{rows}
+	</select>
+	<!--查询所有-->
+	<select id="selectAll"  resultMap="counter">
+		select id,name,creatdate,count,recordid from counter
+	</select>
+	<!--查一个-->
+	<select id="selectById" parameterType="string" resultMap="counter">
+		select id,name,creatdate,count,recordid from counter where id=#{id}
+	</select>
+	<!--添加-->
+	<insert id="insert" parameterType="counter">
+		insert into counter values(#{id},#{name}#{createdate},#{count},#{record.id})
+	</insert>
+	<!--删除-->
+	<delete id="delete" parameterType="string">
+		delete from counter where id=#{id}
+	</delete>
+	<!--修改-->
+	<update id="update" parameterType="counter">
+		update counter set name=#{name},creatdate=#{createdate},count=#{count},recordid=#{record.id} where id=#{id}
+	</update>
+	<!--数据总数-->
+	<select id="selectCount" resultType="integer">
+		select count(id) from counter
+	</select>
+</mapper>

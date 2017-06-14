@@ -26,8 +26,8 @@
                     },
                     {field:'options',title:'操作',width:100,
                         formatter:function (value,row,index) {
-                            return  "<a class='del' onClick=\"del('"+ row.id +"')\" href='javascript:;'>删除</a>&nbsp;" +
-                                    "<a class='edt' onClick=\"editRow('"+ row.id +"')\"  href='javascript:;'>修改</a>";
+                            return  "<a class='del' onClick=\"delPicture('"+ row.id +"')\" href='javascript:;'>删除</a>&nbsp;" +
+                                    "<a class='edt' onClick=\"editRowPicture('"+ row.id +"')\"  href='javascript:;'>修改</a>";
                         }
                     }
                 ]],
@@ -46,11 +46,12 @@
                 pageSize:2,
                 pageList:[2,4,6,8],
             });
-            $('#fb').filebox({
+            $('#fbPicture').filebox({
                 buttonText: '选择文件',
-                buttonAlign: 'left'
+                buttonAlign: 'left',
+                accept:'image/jpeg'
             });
-            $('#picff').form({
+            $('#picffPicture').form({
                 novalidate:true,
                 success:function(data){
                     console.log(data);
@@ -65,7 +66,7 @@
             });
         });
 
-        function del(id) {
+        function delPicture(id) {
             $.messager.confirm("删除提示","您确认删除吗?",function (r) {
                 if(r){
                     $.post('${pageContext.request.contextPath}/picture/delete',{"id":id},function (result) {
@@ -81,9 +82,9 @@
                 }
             });
         }
-        function editRow(id) {
+        function editRowPicture(id) {
             console.log(id);
-            $('#dgEdit').dialog({
+            $('#dgEditPicture').dialog({
                 width:300,
                 height:300,
                 title:'图片信息展示',
@@ -91,31 +92,31 @@
                 buttons:[{
                     text:'提交',
                     iconCls:'icon-save',
-                    handler:sbmit,
+                    handler:sbmitPicture,
                 },{
                     text:'取消',
                     iconCls:'icon-cancle',
-                    handler:cle,
+                    handler:clePicture,
                 }]
             });
         }
-        function sbmit() {
-            $('#ff').form('submit',{
+        function sbmitPicture() {
+            $('#ffPicture').form('submit',{
                 url:'${pageContext.request.contextPath}/picture/update' ,
                 success:function () {
-                    $('#dgEdit').dialog('close',true);
+                    $('#dgEditPicture').dialog('close',true);
                     $pictureda.datagrid('reload');
                 }
             });
         }
 
-        function cle() {
-            $('#dgEdit').dialog('close',true);
+        function clePicture() {
+            $('#dgEditPicture').dialog('close',true);
         }
 
     </script>
-    <form id="picff"  action="${pageContext.request.contextPath}/picture/upload" method="post" enctype="multipart/form-data">
-         添加图片<input id="fb" type="text" style="width:150px" name="aaa">
+    <form id="picffPicture"  action="${pageContext.request.contextPath}/picture/upload" method="post" enctype="multipart/form-data">
+         添加图片<input id="fbPicture" type="text" style="width:150px" name="aaa">
          图片介绍<input class="easyui-textbox" name="title" /><br/>
          是否展示<input type="radio" checked="checked" name="type" value="1">是<input type="radio"  name="type" value="0">否<br/>
         <input type="submit" value="添加" >
@@ -124,4 +125,4 @@
     <div id="pictureda">
     </div>
 </div>
-<div id="dgEdit"></div>
+<div id="dgEditPicture"></div>

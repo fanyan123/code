@@ -18,34 +18,40 @@ import java.util.UUID;
 public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private TeacherDAO teacherDAO;
-    @Override
+
     public void save(Teacher teacher) {
         teacherDAO.insert(teacher);
     }
 
-    @Override
+
     public void delete(String id) {
         teacherDAO.delete(id);
     }
 
-    @Override
+
     public void update(Teacher teacher) {
         teacherDAO.update(teacher);
     }
 
-    @Override
+
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Teacher queryById(String id) {
         return teacherDAO.selectById(id);
     }
 
-    @Override
+
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public List<Teacher> queryAll(Integer page, Integer rows) {
-        return teacherDAO.selectAll((page-1)*rows,rows);
+        return teacherDAO.selectAll1((page-1)*rows,rows);
     }
 
-    @Override
+
+    @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
+    public List<Teacher> queryAll() {
+        return teacherDAO.selectAll();
+    }
+
+
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Integer queryCount() {
         return teacherDAO.selectCount();
