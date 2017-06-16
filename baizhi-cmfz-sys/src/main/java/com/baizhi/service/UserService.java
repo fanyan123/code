@@ -16,4 +16,5 @@ public interface UserService {
     public List<User> queryAll(Integer page, Integer rows);
     public Integer queryCount();
     public List<User> queryAll();
+    public User queryByTel(String tel);
 }

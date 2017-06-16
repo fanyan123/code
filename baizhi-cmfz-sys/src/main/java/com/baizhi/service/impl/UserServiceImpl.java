@@ -62,4 +62,10 @@ public class UserServiceImpl implements UserService {
     public List<User> queryAll(){
         return userDAO.selectAll();
     }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
+    public User queryByTel(String tel) {
+        return userDAO.selectByTel(tel);
+    }
 }

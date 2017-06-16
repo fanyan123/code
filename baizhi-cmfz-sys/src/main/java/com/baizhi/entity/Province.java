@@ -1,14 +1,13 @@
 package com.baizhi.entity;
 
-import java.util.List;
-
 /**
  * Created by ASUS-PC on 2017-06-12.
  */
 public class Province {
     private String id;
     private String name;
-    private List<City> citys;
+
+
 
     @Override
     public String toString() {
@@ -34,11 +33,5 @@ public class Province {
         this.name = name;
     }
 
-    public List<City> getCitys() {
-        return citys;
-    }
 
-    public void setCitys(List<City> citys) {
-        this.citys = citys;
-    }
 }

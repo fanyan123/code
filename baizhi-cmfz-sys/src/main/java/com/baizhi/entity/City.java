@@ -1,11 +1,16 @@
 package com.baizhi.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
+import java.beans.Transient;
+
 /**
  * Created by ASUS-PC on 2017-06-12.
  */
 public class City {
     private String id;
     private String name;
+
     private Province province;
 
     @Override
@@ -35,7 +40,7 @@ public class City {
     public Province getProvince() {
         return province;
     }
-
+    @Transient
     public void setProvince(Province province) {
         this.province = province;
     }

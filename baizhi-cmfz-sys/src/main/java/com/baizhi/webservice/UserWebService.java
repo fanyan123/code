@@ -15,5 +15,6 @@ public interface UserWebService {
     public Map<String,Object> update(User user);
     public Map<String,Object> queryById(String id);
     public Map<String,Object> queryAll();
+    public Map<String,Object> login(User user);
 
 }

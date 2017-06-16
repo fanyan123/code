@@ -12,7 +12,7 @@ public interface UserDAO extends BaseDAO<User>{
     public List<User> selectAll1(@Param("start") Integer start, @Param("rows") Integer rows);
     public Integer selectCount();
     public User selectOne(String id);
-    public User queryByTel(String tel);
+    public User selectByTel(String tel);
 
 
 }
