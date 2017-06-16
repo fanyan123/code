@@ -107,11 +107,11 @@
             buttons:[{
                 text:'提交',
                 iconCls:'icon-save',
-                handler:sbmit1,
+                handler:sbmit1Teacher,
             },{
                 text:'取消',
                 iconCls:'icon-cancle',
-                handler:cle1,
+                handler:cle1Teacher,
             }]
         });
     }

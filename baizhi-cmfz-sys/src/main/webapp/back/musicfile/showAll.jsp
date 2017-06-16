@@ -82,19 +82,19 @@
         });
     }
     function sbmitMusicfile() {
-        $('#fMusicfile').form('submit',{
+        $('#ffMusicfile').form('submit',{
             url:'${pageContext.request.contextPath}/musicfile/update' ,
             success:function () {
-                $('#dgEdit').dialog('close',true);
+                $('#MusicfiledgEdit').dialog('close',true);
                 $musicfileDa.datagrid('reload');
             }
         });
     }
     function sbmit1Musicfile() {
-        $('#ffMusicfile').form('submit',{
+        $('#fMusicfile').form('submit',{
             url:'${pageContext.request.contextPath}/musicfile/upload' ,
             success:function () {
-                $('#add').dialog('close',true);
+                $('#MusicfileAdd').dialog('close',true);
                 $musicfileDa.datagrid('reload');
             }
         });

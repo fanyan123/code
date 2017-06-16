@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.baizhi.dao.RecordDAO">
+	<resultMap id="record" type="record">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<association property="user" javaType="user" select="com.baizhi.dao.UserDAO.selectOne" column="userid"/>
+	</resultMap>
 	<!--查询所有-->
-	<select id="selectAll1"  resultType="record">
+	<select id="selectAll1"  resultMap="record">
 		select id,name,userid from record limit #{start},#{rows}
 	</select>
 	<!--查询所有-->
@@ -10,7 +15,7 @@
 		select id,name,userid from record
 	</select>
 	<!--查一个-->
-	<select id="selectById" parameterType="string" resultType="record">
+	<select id="selectById" parameterType="string"  resultMap="record">
 		select id,name,userid from record where id=#{id}
 	</select>
 	<!--添加-->

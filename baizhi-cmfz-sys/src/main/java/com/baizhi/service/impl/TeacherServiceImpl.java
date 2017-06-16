@@ -14,7 +14,8 @@ import java.util.UUID;
 /**
  * Created by ASUS-PC on 2017-06-13.
  */
-@Service("teacher")
+@Service("teacherService")
+@Transactional
 public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private TeacherDAO teacherDAO;

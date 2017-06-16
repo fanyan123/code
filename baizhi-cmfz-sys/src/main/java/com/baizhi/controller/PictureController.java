@@ -30,7 +30,6 @@ import java.util.UUID;
 @RequestMapping("picture")
 public class PictureController {
     @Resource
-
     private PictureService pictureService;
     @RequestMapping("queryAll")
     @ResponseBody
@@ -46,7 +45,6 @@ public class PictureController {
         }
         return null;
     }
-
     @RequestMapping("delete")
     @ResponseBody
     public String delete(String id){
@@ -97,6 +95,25 @@ public class PictureController {
         }
         IOUtils.closeQuietly(fis);
         IOUtils.closeQuietly(os);
-
+    }
+    @RequestMapping("save")
+    @ResponseBody
+    public String save(Picture picture, MultipartFile aaa, HttpServletRequest request){
+        String realPath = request.getSession().getServletContext().getRealPath("/back/static/images");
+        File file = new File(realPath);
+        String newFileName = UUID.randomUUID().toString()+"."+ FilenameUtils.getExtension(aaa.getOriginalFilename());
+        String s = UUID.randomUUID().toString();
+        picture.setId(s);
+        picture.setName(newFileName);
+        try {
+            pictureService.save(picture);
+            //上传文件
+            aaa.transferTo(new File(file,newFileName));
+            return "success";
+        } catch (Exception e) {
+            pictureService.delete(s);
+            e.printStackTrace();
+        }
+            return "fail";
     }
 }

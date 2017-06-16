@@ -11,22 +11,27 @@
             columns:[[
                 {field:'id',title:'编号', width:100},
                 {field:'content',title:'内容',width:100},
-                {field:'userid',title:'用户ID',width:100},
+                {field:'user',title:'用户',width:100,
+                    formatter:function (value,row,index) {
+                        if(value==null){
+                            return "无";
+                        }else{
+                            return value.name;
+                        }
+                    }
+                },
                 {field:'options',title:'操作',width:100,
                     formatter:function (value,row,index) {
-                        return  "<a class='delRfc' onClick=\"del('"+ row.id +"')\" href='javascript:;'>删除</a>&nbsp;"
+                        return  "<a class='delRfc' onClick=\"delRfc('"+ row.id +"')\" href='javascript:;'>删除</a>&nbsp;"
                     }
                 }
             ]],
             onLoadSuccess:function () {
-                $('.del').linkbutton({
+                $('.delRfc').linkbutton({
                     plain:true,
                     iconCls:'icon-remove'
                 });
-                $('.edt').linkbutton({
-                    plain:true,
-                    iconCls:'icon-edit'
-                });
+
             },
             pagination:true,
             pageNumber:1,

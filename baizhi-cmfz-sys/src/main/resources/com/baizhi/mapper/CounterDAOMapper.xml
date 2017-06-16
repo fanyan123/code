@@ -22,7 +22,7 @@
 	</select>
 	<!--添加-->
 	<insert id="insert" parameterType="counter">
-		insert into counter values(#{id},#{name}#{createdate},#{count},#{record.id})
+		insert into counter values(#{id},#{name},#{createdate},#{count},#{record.id})
 	</insert>
 	<!--删除-->
 	<delete id="delete" parameterType="string">

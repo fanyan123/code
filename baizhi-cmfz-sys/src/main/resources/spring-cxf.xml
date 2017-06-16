@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+
+
+
+
+    <!--通过工厂创建服务实现类对象-->
+    <bean id="weatherService" class="com.baizhi.webservice.restservice.WeatherServiceImpl"/>
+
+    <jaxrs:server address="/weatherService" serviceClass="com.baizhi.webservice.restservice.WeatherService" >
+        <jaxrs:serviceBeans>
+            <ref bean="weatherService"/>
+
+        </jaxrs:serviceBeans>
+    </jaxrs:server>
+
+
+    <!--将服务的实现类对象的创建交给工厂-->
+    <bean id="userWebService" class="com.baizhi.webservice.UserWebServiceImpl"/>
+
+    <!--发布服务-->
+    <jaxrs:server address="/userService" serviceClass="com.baizhi.webservice.restservice.UserWebService">
+        <jaxrs:serviceBeans>
+            <ref bean="userWebService"/>
+        </jaxrs:serviceBeans>
+
+        <jaxrs:providers>
+            <ref bean="fastJsonProvider"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+
+
+
+    <bean id="fastJsonProvider" class="com.alibaba.fastjson.support.jaxrs.FastJsonProvider" >
+
+    </bean>
+
+
+</beans>

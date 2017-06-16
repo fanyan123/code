@@ -22,7 +22,7 @@
 	</delete>
 	<!--修改-->
 	<update id="update" parameterType="teacher">
-		update teacher set name=#{name},picther=#{picpath} where id=#{id}
+		update teacher set name=#{name},picpath=#{picpath} where id=#{id}
 	</update>
 	<!--数据总数-->
 	<select id="selectCount" resultType="integer">

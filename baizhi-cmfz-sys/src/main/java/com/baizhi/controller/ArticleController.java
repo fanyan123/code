@@ -1,33 +1,30 @@
 package com.baizhi.controller;
 
-import com.baizhi.entity.Province;
-import com.baizhi.service.ProvinceService;
+import com.baizhi.entity.Article;
+import com.baizhi.service.ArticleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 /**
  * Created by ASUS-PC on 2017-06-12.
  */
 @Controller
-@RequestMapping("province")
-public class ProvinceController {
+@RequestMapping("article")
+public class ArticleController {
     @Resource
-    private ProvinceService provinceService;
+    private ArticleService articleService;
     @RequestMapping("queryAll")
     @ResponseBody
     public Map<String,Object> queryAll(Integer page,Integer rows){
         try {
-            List<Province> provinces = provinceService.queryAll(page,rows);
+            List<Article> provinces = articleService.queryAll(page,rows);
             Map<String,Object> map = new HashMap<String,Object>();
             map.put("rows",provinces);
-            map.put("total",provinceService.queryCount());
+            map.put("total",articleService.queryCount());
             return map;
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,51 +35,49 @@ public class ProvinceController {
     @ResponseBody
     public String delete(String id){
         try {
-            provinceService.delete(id);
+            articleService.delete(id);
             return "successful";
         } catch (Exception e) {
             e.printStackTrace();
-            return "fail";
         }
+            return "fail";
     }
     @RequestMapping("queryById")
     @ResponseBody
-    public Province queryById(String id){
+    public Article queryById(String id){
         try {
-            Province province = provinceService.queryById(id);
-            return province;
+            Article article = articleService.queryById(id);
+            return article;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
     @RequestMapping("update")
-    @ResponseBody
-    public void update(Province province){
+    public void update(Article article){
         try {
-            provinceService.update(province);
+            articleService.update(article);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     @RequestMapping("save")
-    @ResponseBody
-    public void save(Province province){
+    public void save(Article article){
         try {
-            provinceService.save(province);
+            articleService.save(article);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    @RequestMapping("queryAll1")
+   /* @RequestMapping("queryAll1")
     @ResponseBody
-    public List<Province> queryAll(){
+    public List<article> queryAll(){
         try {
-            List<Province> provinces = provinceService.queryAll();
+            List<article> provinces = provinceService.queryAll();
             return provinces;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
-    }
+    }*/
 }

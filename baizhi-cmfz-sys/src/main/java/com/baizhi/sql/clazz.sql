@@ -37,9 +37,7 @@ create table article
    title                varchar(100),
    author               varchar(100),
    creatdate            date,
-   content              varchar(1500),
-   authorpath           varchar(100),
-   picpath              varchar(100),
+   content              VARCHAR (20000),
    type                 varchar(2),
    primary key (id)
 );
@@ -62,7 +60,7 @@ create table counter
 (
    id                   varchar(36) not null,
    name                 varchar(50),
-   creatdate            date,
+   createdate            date,
    count                integer,
    recordid             varchar(36),
    primary key (id)

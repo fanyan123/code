@@ -15,29 +15,28 @@
                 handler: addUser
             }],
             columns:[[
-                {field:'id',title:'编号', width:100},
-                {field:'name',title:'昵称',width:100},
-                {field:'legalname',title:'法名',width:100},
-                {field:'tel',title:'电话号码',width:100},
-                {field:'sex',title:'性别',width:100},
-                {field:'signature',title:'签名',width:100},
+                {field:'id',title:'编号'},
+                {field:'name',title:'昵称'},
+                {field:'legalname',title:'法名'},
+                {field:'tel',title:'电话号码'},
+                {field:'sex',title:'性别'},
+                {field:'signature',title:'签名'},
                 {field:'picpath',title:'图像名',width:100},
-                {field:'province',title:'所在省',width:100,
+                {field:'province',title:'所在省',
                     formatter:function (value,row,index) {
                         return value.name;
                     }
                 },
-                {field:'city',title:'所在市',width:100,
+                {field:'city',title:'所在市',
                     formatter:function (value,row,index) {
                         return value.name;
                     }
                 },
-                {field:'teacher',title:'上师',width:100,
+                {field:'teacher',title:'上师',
                     formatter:function (value,row,index) {
                         return value.name;
                     }
                 },
-
                 {field:'options',title:'操作',width:100,
                     formatter:function (value,row,index) {
                         return  "<a class='del' onClick=\"delUser('"+ row.id +"')\" href='javascript:;'>删除</a>&nbsp;" +

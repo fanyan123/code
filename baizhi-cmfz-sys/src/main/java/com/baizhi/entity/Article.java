@@ -1,30 +1,28 @@
 package com.baizhi.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by ASUS-PC on 2017-06-12.
  */
-public class Article {
+public class Article implements Serializable{
     private String id;
     private String title;
     private String author;
+    @JSONField(format = "yyyy-MM-dd")
     private Date createdate;
     private String content;
-    private String authorpath;
-    private String picpath;
     private String type;
-
     @Override
     public String toString() {
         return "Article{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
-                ", createdate='" + createdate + '\'' +
+                ", createdate=" + createdate +
                 ", content='" + content + '\'' +
-                ", authorpath='" + authorpath + '\'' +
-                ", picpath='" + picpath + '\'' +
                 ", type='" + type + '\'' +
                 '}';
     }
@@ -69,21 +67,7 @@ public class Article {
         this.content = content;
     }
 
-    public String getAuthorpath() {
-        return authorpath;
-    }
 
-    public void setAuthorpath(String authorpath) {
-        this.authorpath = authorpath;
-    }
-
-    public String getPicpath() {
-        return picpath;
-    }
-
-    public void setPicpath(String picpath) {
-        this.picpath = picpath;
-    }
 
     public String getType() {
         return type;

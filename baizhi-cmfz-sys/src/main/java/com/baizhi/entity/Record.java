@@ -7,7 +7,6 @@ public class Record {
     private String id;
     private String name;
     private User user;
-
     @Override
     public String toString() {
         return "Record{" +

@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" language="java" %>
-
  <script type="text/javascript">
         $(function(){
             $pictureda = $('#pictureda');
@@ -7,6 +6,12 @@
                 url:'${pageContext.request.contextPath}/picture/queryAll',
                 fit:true,
                 fitColumns:true,
+                toolbar: [{
+                    text:'添加',
+                    plan: true,
+                    iconCls: 'icon-add',
+                    handler: addPicture
+                }],
                 columns:[[
                     {field:'id',title:'编号', width:100},
                     {field:'name',title:'图片预览',width:100,
@@ -46,26 +51,8 @@
                 pageSize:2,
                 pageList:[2,4,6,8],
             });
-            $('#fbPicture').filebox({
-                buttonText: '选择文件',
-                buttonAlign: 'left',
-                accept:'image/jpeg'
-            });
-            $('#picffPicture').form({
-                novalidate:true,
-                success:function(data){
-                    console.log(data);
-                    $.messager.show({
-                        title:'通知消息',
-                        msg:data,
-                        timeout:300,
-                        showType:'slide'
-                    });
-                    $pictureda.datagrid('reload');
-                },
-            });
-        });
 
+        })
         function delPicture(id) {
             $.messager.confirm("删除提示","您确认删除吗?",function (r) {
                 if(r){
@@ -109,20 +96,43 @@
                 }
             });
         }
-
         function clePicture() {
             $('#dgEditPicture').dialog('close',true);
         }
-
+        function addPicture() {
+            $('#addPicture').dialog({
+                width:300,
+                height:300,
+                title:'添加图片记录',
+                href:'${pageContext.request.contextPath}/back/picture/pictureAdd.jsp',
+                buttons:[{
+                    text:'提交',
+                    iconCls:'icon-save',
+                    handler:sbmit1Picture,
+                },{
+                    text:'取消',
+                    iconCls:'icon-cancle',
+                    handler:cle1Picture,
+                }]
+            });
+        }
+        function sbmit1Picture() {
+            $('#fPicture').form('submit',{
+                url:'${pageContext.request.contextPath}/picture/save' ,
+                success:function () {
+                    $('#addPicture').dialog('close',true);
+                    $pictureDa.datagrid('reload');
+                }
+            });
+        }
+        function cle1Picture() {
+            $('#addPicture').dialog('close',true);
+        }
     </script>
-    <form id="picffPicture"  action="${pageContext.request.contextPath}/picture/upload" method="post" enctype="multipart/form-data">
-         添加图片<input id="fbPicture" type="text" style="width:150px" name="aaa">
-         图片介绍<input class="easyui-textbox" name="title" /><br/>
-         是否展示<input type="radio" checked="checked" name="type" value="1">是<input type="radio"  name="type" value="0">否<br/>
-        <input type="submit" value="添加" >
-    </form>
+
 <div style="width: 100%;height: 80%">
     <div id="pictureda">
     </div>
 </div>
 <div id="dgEditPicture"></div>
+<div id="addPicture"></div>

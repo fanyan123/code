@@ -23,8 +23,6 @@ import com.alibaba.fastjson.JSONObject;
 @Controller
 @RequestMapping("/imgs")
 public class ImageBrowserController {
-
-	
 	//浏览文件
 	@RequestMapping("/browser")
 	public void browser(String path, HttpServletRequest request,HttpServletResponse response){

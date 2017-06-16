@@ -23,7 +23,7 @@
 	</delete>
 	<!--修改-->
 	<update id="update" parameterType="music">
-		update music set title=#{title},count=#{count},author=#{author},broadcast=#{broadcast},picther=#{picpath} where id=#{id}
+		update music set title=#{title},count=#{count},author=#{author},broadcast=#{broadcast},picpath=#{picpath} where id=#{id}
 	</update>
 	<!--数据总数-->
 	<select id="selectCount" resultType="integer">

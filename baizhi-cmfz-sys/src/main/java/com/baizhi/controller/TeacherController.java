@@ -85,6 +85,7 @@ public class TeacherController {
     public String save(Teacher teacher, MultipartFile aaa, HttpServletRequest request){
         String realPath = request.getSession().getServletContext().getRealPath("/back/static/images");
         File file = new File(realPath);
+        System.out.println(realPath+"----------------------");
         String newFileName = UUID.randomUUID().toString()+"."+ FilenameUtils.getExtension(aaa.getOriginalFilename());
         String s = UUID.randomUUID().toString();
         teacher.setId(s);

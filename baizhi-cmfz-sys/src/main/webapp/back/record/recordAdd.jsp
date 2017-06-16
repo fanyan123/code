@@ -2,6 +2,6 @@
 
 <div style="text-align: center">
     <form method="post" class="easyui-form" id="fRecord">
-        <div style="margin-top: 30px">功课名：<input class="easyui-textbox" data-options="required:true" name="name"></div>
+        <div style="margin-top: 30px">功课名(所有人共有)<input class="easyui-textbox" data-options="required:true" name="name"></div>
     </form>
 </div>

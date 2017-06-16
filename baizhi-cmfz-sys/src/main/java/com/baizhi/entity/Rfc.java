@@ -1,5 +1,7 @@
 package com.baizhi.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 /**
@@ -8,6 +10,7 @@ import java.util.Date;
 public class Rfc {
     private String id;
     private String content;
+    @JSONField(format = "yyyy-MM-dd")
     private Date pushdate;
     private User user;
 

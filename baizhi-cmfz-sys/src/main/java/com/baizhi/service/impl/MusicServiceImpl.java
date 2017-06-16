@@ -21,7 +21,6 @@ public class MusicServiceImpl implements MusicService {
     private MusicDAO musicDAO;
     @Override
     public void save(Music music) {
-        music.setId(UUID.randomUUID().toString());
         musicDAO.insert(music);
     }
 

@@ -3,7 +3,8 @@
 <script>
     $(function(){
         $.post('${pageContext.request.contextPath}/user/queryById',{"id":"${param.id}"},function (user) {
-            $('#idProvince').val(user.id);
+            $('#idUser').val(user.id);
+            $('#passwordUser').val(user.password);
             $('#UserName').textbox({
                 value:user.name,
             });
@@ -12,8 +13,12 @@
             });
             $('#UserTel').textbox({
                 value:user.tel,
-            });$('#UserSignature').textbox({
+            });
+            $('#UserSignature').textbox({
                 value:user.signature,
+            });
+            $('#UserPicpath').textbox({
+                value:user.picpath,
             });
 
             $.post("${pageContext.request.contextPath}/province/queryAll1",function(province1){
@@ -68,13 +73,15 @@
     });
 </script>
 <div style="text-align: center">
-    <form method="post" class="easyui-form" id="ffProvince">
+    <form method="post" class="easyui-form" id="ffUser" enctype="multipart/form-data">
         <div style="margin-top: 30px"><input type="hidden" data-options="required:true" id="idUser" name="id"></div>
+        <div style="margin-top: 30px"><input type="hidden" data-options="required:true" id="passwordUser" name="password"></div>
         <div style="margin-top: 10px">昵称：<input class="easyui-textbox" data-options="required:true" name="name" id="UserName"></div>
         <div style="margin-top: 10px">法名：<input class="easyui-textbox" data-options="required:true" name="legalname" id="UserLegalname"></div>
         <div style="margin-top: 10px">电话：<input class="easyui-textbox" data-options="required:true" name="tel" id="UserTel"></div>
         <div style="margin-top: 10px">性别：<input type="radio" name="sex" value="男" checked="checked"  />男&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sex" value="女"/></div>
         <div style="margin-top: 10px">签名：<input class="easyui-textbox" data-options="required:true" name="signature" id="UserSignature"></div>
+        <div style="margin-top: 10px">头像名：<input class="easyui-textbox" data-options="required:true" name="picpath" id="UserPicpath"></div>
         <div style="margin-top: 10px">所在省：<select id="UserAddProvince_sel" name="province.id"/></div>
         <div style="margin-top: 10px">所在市：<select id="UserAddCity_sel" name="city.id"/></div>
         <div style="margin-top: 10px">上师：<select id="UserAddTeacher_sel" name="teacher.id"/></div>

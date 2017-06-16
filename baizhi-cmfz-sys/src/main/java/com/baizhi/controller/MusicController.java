@@ -4,14 +4,19 @@ import com.baizhi.entity.Music;
 import com.baizhi.entity.Province;
 import com.baizhi.service.MusicService;
 import com.baizhi.service.ProvinceService;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by ASUS-PC on 2017-06-12.
@@ -68,11 +73,22 @@ public class MusicController {
     }
     @RequestMapping("save")
     @ResponseBody
-    public void save(Music music){
+    public String save(Music music, MultipartFile aaa, HttpServletRequest request){
+        String realPath = request.getSession().getServletContext().getRealPath("/back/static/images");
+        File file = new File(realPath);
+        String newFileName = UUID.randomUUID().toString()+"."+ FilenameUtils.getExtension(aaa.getOriginalFilename());
+        String s = UUID.randomUUID().toString();
+        music.setId(s);
+        music.setPicpath(newFileName);
         try {
             musicService.save(music);
+            //上传文件
+            aaa.transferTo(new File(file,newFileName));
+            return "success";
         } catch (Exception e) {
             e.printStackTrace();
+            musicService.delete(s);
+            return "fail";
         }
     }
     @RequestMapping("queryAll1")

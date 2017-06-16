@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.baizhi.dao.RfcDAO">
+	<resultMap id="rfc" type="rfc">
+		<id column="id" property="id"/>
+		<result column="content" property="content"/>
+		<result column="pushdate" property="pushdate"/>
+		<association property="user" javaType="user" select="com.baizhi.dao.UserDAO.selectOne" column="userid"/>
+	</resultMap>
 	<!--查询所有-->
-	<select id="selectAll"  resultType="rfc">
+	<select id="selectAll"  resultMap="rfc">
 		select id,content,pushdate,userid from rfc limit #{start},#{rows}
 	</select>
 	<!--数据总数-->

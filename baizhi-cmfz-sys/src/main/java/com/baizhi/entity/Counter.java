@@ -1,5 +1,7 @@
 package com.baizhi.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 /**
@@ -8,6 +10,7 @@ import java.util.Date;
 public class Counter {
     private String id;
     private String name;
+    @JSONField(format = "yyyy-MM-dd")
     private Date  createdate;
     private Integer count;
     private Record record;

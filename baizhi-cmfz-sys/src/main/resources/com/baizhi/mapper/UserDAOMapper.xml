@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.baizhi.dao.UserDAO">
 	<sql id="userQuery">
-		id,name,legalname,tel,sex,signature,picpath,provinceid,cityid,teacherid
+		id,name,legalname,tel,sex,signature,picpath,provinceid,cityid,teacherid,password,salt
 	</sql>
 	<!-- 添加用户 -->
 	<insert id="insert" parameterType="user">
@@ -10,7 +10,7 @@
 	</insert>
 	<!--修改用户-->
 	<update id="update" parameterType="user" >
-		update user set name=#{name},legalname=#{legalname},tel=#{tel},sex=#{sex},signature=#{signature},picpath=#{picpath},provinceid=#{province.id},cityid=#{city.id},password=#{possword},salt=#{salt},teacherid=#{teacher.id} where id=#{id}
+		update user set name=#{name},legalname=#{legalname},tel=#{tel},sex=#{sex},signature=#{signature},picpath=#{picpath},provinceid=#{province.id},cityid=#{city.id},password=#{password},salt=#{salt},teacherid=#{teacher.id} where id=#{id}
 	</update>
 	<resultMap id="user" type="user">
 		<id column="id" property="id"/>
@@ -20,6 +20,8 @@
 		<result column="sex" property="sex"/>
 		<result column="signature" property="signature"/>
 		<result column="picpath" property="picpath"/>
+		<result column="password" property="password"/>
+		<result column="salt" property="salt"/>
 		<association property="province" javaType="province" select="com.baizhi.dao.ProvinceDAO.selectById" column="provinceid"/>
 		<association property="city" javaType="city" select="com.baizhi.dao.CityDAO.selectById" column="cityid"/>
 		<association property="teacher" javaType="teacher" select="com.baizhi.dao.TeacherDAO.selectById" column="teacherid"/>
@@ -37,10 +39,13 @@
 	<select id="selectById" resultMap="user" parameterType="string">
 		select <include refid="userQuery"/> from user where id=#{id}
 	</select>
-
-	<!-- 根据用户名查询用户 -->
-	<select id="selectByName" parameterType="string" resultType="user">
-		select <include refid="userQuery"/> from user where name=#{name}
+	<!--查一个用户的id和昵称-->
+	<select id="selectOne" parameterType="string" resultType="user">
+		select id,name from user where id=#{id}
+	</select>
+	<!-- 根据手机号查询用户 -->
+	<select id="selectByTel" parameterType="string" resultType="user">
+		select <include refid="userQuery"/> from user where tel=#{tel}
 	</select>
 	<!--删除用户-->
 	<delete id="delete" parameterType="string">

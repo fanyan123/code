@@ -3,6 +3,8 @@ package com.baizhi.service.impl;
 import com.baizhi.dao.UserDAO;
 import com.baizhi.entity.User;
 import com.baizhi.service.UserService;
+import com.baizhi.util.MD5Util;
+import com.baizhi.util.SaltUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -21,7 +23,9 @@ public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
     @Override
     public void save(User user) {
-        user.setId(UUID.randomUUID().toString());
+        String salt = SaltUtil.getSalt(4);
+        user.setPassword(MD5Util.getMD5Code(user.getPassword()+salt));
+        user.setSalt(salt);
         userDAO.insert(user);
     }
 

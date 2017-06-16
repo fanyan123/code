@@ -38,12 +38,12 @@
 
 </script>
 <div style="text-align: center">
-    <form method="post" class="easyui-form" id="fUser" >
+    <form method="post" class="easyui-form" id="fUser" enctype="multipart/form-data">
         <div style="margin-top: 10px">昵称：<input class="easyui-textbox" data-options="required:true" name="name"></div>
         <div style="margin-top: 10px">密码：<input class="easyui-textbox" data-options="required:true" name="password"></div>
         <div style="margin-top: 10px">法名：<input class="easyui-textbox" data-options="required:true" name="legalname"></div>
         <div style="margin-top: 10px">电话：<input class="easyui-textbox" data-options="required:true" name="tel"></div>
-        <div style="margin-top: 10px">性别：<input type="radio" name="sex" value="男" checked="checked"/>男&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sex" value="女"/></div>
+        <div style="margin-top: 10px">性别：<input type="radio" name="sex" value="男" checked="checked"/>男&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sex" value="女"/>女</div>
         <div style="margin-top: 10px">签名：<input class="easyui-textbox" data-options="required:true" name="signature"></div>
         <div style="margin-top: 10px">头像：<input id="fbUser" type="text" style="width:150px" name="aaa"></div>
         <div style="margin-top: 10px">所在省：<select id="UserAddProvince" name="province.id"/></div>

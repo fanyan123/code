@@ -16,6 +16,15 @@
             columns:[[
                 {field:'id',title:'编号', width:100},
                 {field:'name',title:'功课记录名',width:100},
+                {field:'user',title:'所属用户',width:100,
+                    formatter:function (value,row,index) {
+                        if(value==null){
+                            return "所有用户";
+                        }else {
+                            return value.name;
+                        }
+                    }
+                },
                 {field:'options',title:'操作',width:100,
                     formatter:function (value,row,index) {
                         return  "<a class='del' onClick=\"delRecord('"+ row.id +"')\" href='javascript:;'>删除</a>&nbsp;" +

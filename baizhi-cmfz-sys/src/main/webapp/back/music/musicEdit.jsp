@@ -16,6 +16,9 @@
             $('#broadcastMusic').textbox({
                 value:music.broadcast,
             });
+            $('#picpathMusic').textbox({
+                value:music.picpath,
+            });
         },'JSON');
     });
 </script>
@@ -26,5 +29,6 @@
         <div style="margin-top: 30px">集数：<input class="easyui-textbox" data-options="required:true" name="count" id="countMusic"></div>
         <div style="margin-top: 30px">作者：<input class="easyui-textbox" data-options="required:true" name="author" id="authorMusic"></div>
         <div style="margin-top: 30px">播音：<input class="easyui-textbox" data-options="required:true" name="broadcast" id="broadcastMusic"></div>
+        <div style="margin-top: 30px">图片名:<input class="easyui-textbox" data-options="required:true" name="picpath" id="picpathMusic" readonly="readonly"></div>
     </form>
 </div>
